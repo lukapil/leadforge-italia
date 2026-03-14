@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeadForge — Kit Pubblicitario</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --paper: #f5f0e8;
+    --acid: #c8f53a;
+    --rust: #e84b1a;
+    --steel: #1a1a2e;
+    --mid: #6b6560;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Syne', sans-serif; background: #f0ebe3; color: var(--ink); padding: 2rem; }
+  h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 0.5rem; }
+  .subtitle { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--mid); margin-bottom: 3rem; }
+
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+.grid.three { grid-template-columns: repeat(3, 1fr); }
+
+.card {
+background: white;
+border-radius: 2px;
+overflow: hidden;
+box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+
+.card-header {
+padding: 0.8rem 1.2rem;
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.card-header .dot {
+width: 8px; height: 8px; border-radius: 50%;
+}
+
+.card-body { padding: 1.5rem; }
+
+.copy-text {
+font-size: 0.9rem;
+line-height: 1.7;
+white-space: pre-wrap;
+color: #333;
+}
+
+.copy-text strong { color: var(–rust); }
+
+/* ── VISUAL ADS ── */
+.visual-ad {
+aspect-ratio: 1;
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+padding: 2rem;
+overflow: hidden;
+}
+
+.visual-ad.dark {
+background: var(–steel);
+color: var(–paper);
+}
+
+.visual-ad.acid {
+background: var(–acid);
+color: var(–ink);
+}
+
+.visual-ad.rust {
+background: var(–rust);
+color: white;
+}
+
+.ad-eyebrow {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+opacity: 0.6;
+margin-bottom: 0.8rem;
+}
+
+.ad-headline {
+font-size: clamp(1.4rem, 3vw, 2.2rem);
+font-weight: 800;
+line-height: 1;
+letter-spacing: -0.04em;
+margin-bottom: 1.2rem;
+}
+
+.ad-sub {
+font-size: 0.75rem;
+opacity: 0.7;
+line-height: 1.5;
+margin-bottom: 1.5rem;
+font-family: ‘DM Mono’, monospace;
+}
+
+.ad-cta {
+display: inline-block;
+padding: 0.7rem 1.5rem;
+font-size: 0.8rem;
+font-weight: 700;
+letter-spacing: 0.02em;
+}
+
+.visual-ad.dark .ad-cta { background: var(–acid); color: var(–ink); }
+.visual-ad.acid .ad-cta { background: var(–ink); color: white; }
+.visual-ad.rust .ad-cta { background: white; color: var(–rust); }
+
+.ad-bg-number {
+position: absolute;
+top: 1rem; right: 1.5rem;
+font-size: 7rem;
+font-weight: 800;
+opacity: 0.06;
+line-height: 1;
+letter-spacing: -0.06em;
+}
+
+.ad-corner {
+position: absolute;
+top: 1.5rem; left: 1.5rem;
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.1em;
+opacity: 0.5;
+display: flex;
+align-items: center;
+gap: 0.4rem;
+}
+
+.ad-corner::before {
+content: ‘’;
+width: 6px; height: 6px;
+border-radius: 50%;
+background: currentColor;
+box-shadow: 0 0 8px currentColor;
+}
+
+.ad-tag-list {
+display: flex;
+flex-wrap: wrap;
+gap: 0.4rem;
+margin-bottom: 1rem;
+}
+
+.ad-tag {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.6rem;
+padding: 0.2rem 0.6rem;
+border: 1px solid currentColor;
+opacity: 0.5;
+}
+
+/* ── SECTION TITLES ── */
+.section-title {
+font-size: 1.3rem;
+font-weight: 800;
+letter-spacing: -0.03em;
+margin: 3rem 0 1.2rem;
+padding-bottom: 0.7rem;
+border-bottom: 2px solid var(–ink);
+display: flex;
+align-items: center;
+gap: 0.8rem;
+}
+
+.section-title::before {
+content: attr(data-num);
+font-family: ‘DM Mono’, monospace;
+font-size: 0.7rem;
+color: var(–rust);
+}
+
+/* ── EMAIL ── */
+.email-card {
+background: white;
+border: 1px solid rgba(0,0,0,0.08);
+max-width: 600px;
+}
+
+.email-header {
+background: var(–ink);
+color: var(–paper);
+padding: 1.5rem;
+}
+
+.email-subject {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.7rem;
+color: rgba(255,255,255,0.4);
+margin-bottom: 0.4rem;
+}
+
+.email-from { font-size: 1rem; font-weight: 700; }
+
+.email-body { padding: 2rem; font-size: 0.9rem; line-height: 1.8; color: #444; }
+.email-body p { margin-bottom: 1rem; }
+.email-body .highlight { color: var(–rust); font-weight: 700; }
+.email-body .cta-block {
+background: var(–rust);
+color: white;
+padding: 1rem 1.5rem;
+text-align: center;
+font-weight: 700;
+margin: 1.5rem 0;
+font-size: 0.95rem;
+}
+.email-body .sig { color: var(–mid); font-size: 0.82rem; }
+</style>
+
+</head>
+<body>
+
+<h1>LeadForge Italia — Kit Pubblicitario</h1>
+<p class="subtitle">// copy per social · email outreach · visual ads · lukapillitteri@gmail.com · +39 320 913 8729</p>
+
+<!-- ════════════════════════ VISUAL ADS ════════════════════════ -->
+
+<div class="section-title" data-num="01 //">Visual Ad — Carosello / Feed</div>
+<div class="grid three">
+
+  <div class="card">
+    <div class="card-header"><span class="dot" style="background:#c8f53a"></span>AD 1 — Dark · Square 1:1</div>
+    <div class="visual-ad dark">
+      <div class="ad-corner">LeadForge Italia</div>
+      <div class="ad-bg-number">500</div>
+      <div class="ad-eyebrow">Lead Generation B2B</div>
+      <div class="ad-headline">500 clienti<br>potenziali.<br>In 24 ore.</div>
+      <div class="ad-sub">Ristoranti · Medici · Agenzie<br>Palestre · Studi Legali · Hotel</div>
+      <div class="ad-cta">Richiedi campione gratis →</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="dot" style="background:#e84b1a"></span>AD 2 — Acid · Square 1:1</div>
+    <div class="visual-ad acid">
+      <div class="ad-corner" style="color:rgba(10,10,10,0.5)">LeadForge Italia</div>
+      <div class="ad-bg-number" style="color:#000">94%</div>
+      <div class="ad-eyebrow">Email verificate al 94%</div>
+      <div class="ad-headline">Smetti di<br>cercare.<br>Inizia a<br>vendere.</div>
+      <div class="ad-tag-list">
+        <span class="ad-tag">LOCALE</span>
+        <span class="ad-tag">VERIFICATO</span>
+        <span class="ad-tag">B2B</span>
+      </div>
+      <div class="ad-cta">50 lead gratis →</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="dot" style="background:#1a1a2e"></span>AD 3 — Rust · Square 1:1</div>
+    <div class="visual-ad rust">
+      <div class="ad-corner">LeadForge Italia</div>
+      <div class="ad-bg-number">€0.30</div>
+      <div class="ad-eyebrow">A partire da €0.30 / lead</div>
+      <div class="ad-headline">Il tuo<br>prossimo<br>cliente è<br>già qui.</div>
+      <div class="ad-sub">CSV pronto · Email + Tel · CRM ready<br>Consegna entro 48 ore</div>
+      <div class="ad-cta">Ordina ora →</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════ INSTAGRAM COPY ════════════════════════ -->
+
+<div class="section-title" data-num="02 //">Copy — Instagram / Facebook (Post)</div>
+<div class="grid">
+
+  <div class="card">
+    <div class="card-header"><span class="dot" style="background:#833ab4"></span>Post Instagram — Problema/Soluzione</div>
+    <div class="card-body">
+      <div class="copy-text">🔴 Stai ancora cercando clienti su Google uno per uno?
+
+Ci vogliono ore per trovare 20 contatti decenti.
+La metà delle email non funzionano.
+E intanto la tua pipeline è vuota.
+
+Noi facciamo tutto questo per te.
+
+✅ <strong>500 lead locali verificati in 24 ore</strong>
+✅ Email + telefono + sito + indirizzo
+✅ Filtrati per settore e città
+✅ Pronti per il tuo CRM
+
+📍 Ristoranti, medici, agenzie immobiliari,
+palestre, hotel, studi legali — qualsiasi settore.
+
+Richiedi <strong>50 lead GRATIS</strong> adesso.
+⬇️ Link in bio
+
+#leadgeneration #b2b #marketingitalia #coldoutreach
+#vendite #clienti #emailmarketing #salestips</div>
+</div>
+
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="dot" style="background:#e84b1a"></span>Post Instagram — Social Proof</div>
+    <div class="card-body">
+      <div class="copy-text">💬 "In 24 ore ho ricevuto 500 ristoranti
+della Lombardia con email verificata.
+Il mio reply rate è schizzato al +340%."
+— Marco T., consulente marketing
+
+Questo è quello che fa la differenza
+tra una campagna mediocre e una che converte.
+
+→ <strong>Dati puliti</strong>
+→ <strong>Contatti reali</strong>
+→ <strong>Nicchia precisa</strong>
+
+Noi prendiamo la tua richiesta,
+setacciamo fonti pubbliche, Google Maps,
+LinkedIn e directory di settore.
+
+Il risultato? Un file pronto da usare subito.
+
+💌 DM per info o scrivi a:
+lukapillitteri@gmail.com
+
+#leads #b2bleads #prospecting #outreach
+#italianmarketing #agenziemarketing</div>
+</div>
+
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="dot" style="background:#0077b5"></span>Post LinkedIn — Professionale</div>
+    <div class="card-body">
+      <div class="copy-text">Se lavori nel B2B in Italia, probabilmente perdi ore a costruire liste di prospect.
+
+Ho una soluzione.
+
+Offro un servizio di <strong>lead generation B2B locale</strong> su misura:
+
+📌 Scelgi il settore (ristoranti, medici, agenzie, studi legali, alberghi, ecc.)
+📌 Scelgi la città o regione
+📌 Ricevi un CSV con email verificata, telefono, sito, indirizzo
+
+I dati vengono raccolti da fonti pubbliche (Google Maps, directory professionali, LinkedIn) e verificati prima della consegna.
+
+Tempi: 24–48 ore.
+Formato: CSV / Excel / JSON.
+Prezzo: da €49 per 100 contatti.
+
+🎁 Offro <strong>50 lead gratuiti</strong> per testare la qualità prima di acquistare.
+
+Se ti interessa, scrivimi in DM o a lukapillitteri@gmail.com
+
+——
+Tagga un collega che ha bisogno di più prospect 👇</div>
+</div>
+
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="dot" style="background:#c8f53a"></span>Thread X/Twitter — Hook forte</div>
+    <div class="card-body">
+      <div class="copy-text">1/ Ho costruito un sistema per trovare 500 lead B2B locali in meno di 24 ore. Ecco come funziona 🧵
+
+2/ Il problema: cercare clienti potenziali in Italia è lentissimo. Google Maps, LinkedIn, directory… ci vuole una giornata per trovare 50 contatti decenti.
+
+3/ La soluzione: automazione + verifica manuale. Uso API di dati pubblici per raccogliere contatti per settore e città, poi verifico ogni email prima di consegnare.
+
+4/ Il risultato: CSV pronto per il CRM con nome azienda, email verificata, telefono, sito, indirizzo. Filtrato esattamente come vuoi tu.
+
+5/ Settori coperti: ristoranti, medici, dentisti, avvocati, commercialisti, agenzie immobiliari, palestre, hotel, negozi, imprese edili.
+
+6/ Prezzi:
+• 100 lead = €49
+• 500 lead = €149  
+• 2.000 lead = €399
+
+7/ Offro 50 lead GRATIS per testare.
+
+Scrivi “LEADS” nei commenti o DM.
+Mail: lukapillitteri@gmail.com</div>
+</div>
+
+  </div>
+
+</div>
+
+<!-- ════════════════════════ WHATSAPP / DM ════════════════════════ -->
+
+<div class="section-title" data-num="03 //">Copy — WhatsApp / DM Outreach</div>
+<div class="grid">
+
+  <div class="card">
+    <div class="card-header"><span class="dot" style="background:#25d366"></span>Messaggio WhatsApp — Breve</div>
+    <div class="card-body">
+      <div class="copy-text">Ciao [Nome] 👋
+
+Ti contatto perché offro un servizio di lead generation B2B locale.
+
+In pratica: ti consegno una lista di contatti verificati (email + tel) filtrati per settore e città, in 24–48 ore.
+
+📦 Es: 500 ristoranti di Milano con email verificata → €149
+
+Ti mando 50 lead GRATIS per farti vedere la qualità prima di acquistare.
+
+Ti interessa? 🎯
+
+— Luca · lukapillitteri@gmail.com</div>
+</div>
+
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="dot" style="background:#0077b5"></span>DM LinkedIn — Primo contatto</div>
+    <div class="card-body">
+      <div class="copy-text">Ciao [Nome],
+
+ho visto che lavori nel settore [SETTORE] — immagino che trovare nuovi clienti sia una delle sfide quotidiane.
+
+Offro un servizio semplice: liste di contatti B2B locali verificati (email + telefono), filtrate per settore e città, consegnate in 24–48 ore.
+
+Prima di qualsiasi acquisto ti mando 50 lead gratuiti sulla tua nicchia, così puoi valutare la qualità.
+
+Ti interessa fare una prova?
+
+Luca</div>
+</div>
+
+  </div>
+
+</div>
+
+<!-- ════════════════════════ EMAIL ════════════════════════ -->
+
+<div class="section-title" data-num="04 //">Email Outreach</div>
+
+<div class="email-card">
+  <div class="email-header">
+    <div class="email-subject">OGGETTO: 50 contatti gratis per [la tua nicchia] — nessun obbligo</div>
+    <div class="email-from">Da: Luca — LeadForge Italia · lukapillitteri@gmail.com</div>
+  </div>
+  <div class="email-body">
+    <p>Ciao [Nome],</p>
+    <p>ti scrivo perché offro un servizio che potrebbe farti risparmiare ore ogni settimana.</p>
+    <p>In poche parole: costruisco <span class="highlight">liste di contatti B2B locali verificati</span> su misura — tu mi dici settore e città, io ti consegno un CSV con email, telefono e indirizzo in 24–48 ore.</p>
+    <p>Niente database generici. Ogni lista è costruita apposta per te, con verifica email in tempo reale.</p>
+    <div class="cta-block">🎁 Ti mando 50 lead gratuiti adesso — nessuna carta di credito, nessun obbligo</div>
+    <p>Se la qualità ti convince, i pacchetti partono da €49 per 100 contatti.</p>
+    <p>Basta rispondere con: settore + città che ti interessa, e il file ti arriva entro oggi.</p>
+    <p class="sig">
+      A presto,<br>
+      <strong>Luca Pillitteri</strong><br>
+      LeadForge Italia<br>
+      📧 lukapillitteri@gmail.com<br>
+      📱 +39 320 913 8729
+    </p>
+  </div>
+</div>
+
+<!-- ════════════════════════ HASHTAG & NOTE ════════════════════════ -->
+
+<div class="section-title" data-num="05 //">Note Strategiche</div>
+<div class="card" style="max-width:900px">
+  <div class="card-header"><span class="dot" style="background:#c8f53a"></span>Strategia di lancio rapido</div>
+  <div class="card-body">
+    <div class="copy-text" style="font-family:'DM Mono',monospace;font-size:0.8rem;line-height:1.9;color:#444">
+GIORNO 1–2
+→ Pubblica il Post LinkedIn professionale (copia 3)
+→ Manda il DM LinkedIn a 20 consulenti marketing / agenzie
+→ Pubblica il Post Instagram Problema/Soluzione
+
+GIORNO 3–4
+→ Attiva il Thread su X/Twitter
+→ Manda le email outreach a 30 potenziali clienti
+→ Rispondi ai commenti e DM entro 1 ora
+
+GIORNO 5–7
+→ Post Instagram Social Proof (con screenshot risultati reali)
+→ Offri i 50 lead gratis a chiunque comenti o risponda
+→ Chiudi i primi 3–5 clienti paganti
+
+METRICHE DA TRACCIARE
+→ Reply rate email: obiettivo > 15%
+→ Conversione da campione gratis a pagante: obiettivo > 30%
+→ Costo acquisizione cliente: obiettivo < €10
+
+PREZZO PSICOLOGICO
+→ €49 starter è un “sì facile” — moltissimi lo acquistano senza pensarci
+→ Il pacchetto Pro €149 è dove fai il margine reale (costo medio lead: €0.30)
+→ Enterprise €399 per agenzie: 1 cliente = 8x il costo del pacchetto starter
+</div>
+
+  </div>
+</div>
+
+</body>
+</html>
