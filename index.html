@@ -495,8 +495,8 @@ align-items: end;
 }
 
 .card {
-background: rgba(245,240,232,0.04);
-border: 1px solid rgba(245,240,232,0.08);
+background: rgba(255,255,255,0.07);
+border: 1px solid rgba(245,240,232,0.15);
 padding: 2.5rem;
 position: relative;
 transition: transform 0.3s ease, border-color 0.3s ease;
@@ -504,7 +504,7 @@ transition: transform 0.3s ease, border-color 0.3s ease;
 
 .card:hover {
 transform: translateY(-6px);
-border-color: rgba(245,240,232,0.2);
+border-color: rgba(245,240,232,0.35);
 }
 
 .card.featured {
@@ -531,7 +531,7 @@ font-family: ‘DM Mono’, monospace;
 font-size: 0.65rem;
 letter-spacing: 0.15em;
 text-transform: uppercase;
-color: var(–mid);
+color: rgba(245,240,232,0.6);
 margin-bottom: 1rem;
 }
 
@@ -551,7 +551,7 @@ margin-bottom: 0.3rem;
 .card-unit {
 font-family: ‘DM Mono’, monospace;
 font-size: 0.7rem;
-color: rgba(245,240,232,0.4);
+color: rgba(245,240,232,0.6);
 margin-bottom: 2rem;
 }
 
@@ -576,9 +576,9 @@ display: flex;
 align-items: center;
 gap: 0.7rem;
 font-size: 0.85rem;
-color: rgba(245,240,232,0.6);
+color: rgba(245,240,232,0.85);
 padding: 0.5rem 0;
-border-bottom: 1px solid rgba(245,240,232,0.05);
+border-bottom: 1px solid rgba(245,240,232,0.1);
 }
 
 .card.featured .card-features li { color: var(–mid); border-color: rgba(0,0,0,0.06); }
@@ -600,14 +600,14 @@ font-family: ‘Syne’, sans-serif;
 font-weight: 700;
 font-size: 0.85rem;
 text-decoration: none;
-border: 1px solid rgba(245,240,232,0.2);
+border: 1px solid rgba(245,240,232,0.5);
 color: var(–paper);
 transition: all 0.2s;
 letter-spacing: 0.02em;
 }
 
 .card-btn:hover {
-background: rgba(245,240,232,0.1);
+background: rgba(245,240,232,0.15);
 }
 
 .card.featured .card-btn {
@@ -1159,7 +1159,7 @@ footer { flex-direction: column; text-align: center; }
       <div class="contact-icon">📧</div>
       <div>
         <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--mid);margin-bottom:0.2rem">EMAIL</div>
-        <a href="mailto:lukapillitteri@gmail.com">lukapillitteri@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#412d342a2031282d2d28353524332801262c20282d6f222e2c"><span class="__cf_email__" data-cfemail="670b120c06170e0b0b0e131302150e27000a060e0b4904080a">[email&#160;protected]</span></a>
       </div>
     </div>
     <div class="contact-item">
@@ -1246,50 +1246,35 @@ footer { flex-direction: column; text-align: center; }
     <li><a href="#pacchetti">Pacchetti</a></li>
     <li><a href="#contatto">Contatti</a></li>
   </ul>
-  <div class="footer-copy">© 2026 · lukapillitteri@gmail.com · +39 320 913 8729</div>
+  <div class="footer-copy">© 2026 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="600c150b0110090c0c09141405120920070d01090c4e030f0d">[email&#160;protected]</a> · +39 320 913 8729</div>
 </footer>
 
-<script>
-  // Intersection Observer per animazioni
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.15 });
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
-  document.querySelectorAll('.step, .fade-up').forEach(el => observer.observe(el));
+// Intersection Observer per animazioni
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add(‘visible’);
+}
+});
+}, { threshold: 0.15 });
 
-  // Form submit
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.submit-btn');
-    btn.textContent = '✓ Richiesta inviata! Ti contattiamo presto.';
-    btn.style.background = '#2d8a4e';
-    btn.disabled = true;
-  }
+document.querySelectorAll(’.step, .fade-up’).forEach(el => observer.observe(el));
 
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
+// Form submit
+function handleSubmit(e) {
+e.preventDefault();
+const btn = e.target.querySelector(’.submit-btn’);
+btn.textContent = ‘✓ Richiesta inviata! Ti contattiamo presto.’;
+btn.style.background = ‘#2d8a4e’;
+btn.disabled = true;
+}
 
-  // Counter animation
-  function animateCounter(el, target, suffix = '') {
-    let current = 0;
-    const increment = target / 60;
-    const timer = setInterval(() => {
-      current = Math.min(current + increment, target);
-      el.textContent = Math.floor(current) + suffix;
-      if (current >= target) clearInterval(timer);
-    }, 25);
-  }
-</script>
-
-</body>
-</html>
+// Smooth scroll
+document.querySelectorAll(‘a[href^=”#”]’).forEach(a => {
+a.addEventListener(‘click’, e => {
+e.preventDefault();
+const target = document.querySelector(a.getAttribute(‘href’));
+if (target) target.scrollIntoView({ behavior: ‘smooth’, block: ‘start’ });
+})
