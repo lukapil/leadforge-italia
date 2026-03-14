@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeadForge Italia — Lead B2B Locali su Misura</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --paper: #f5f0e8;
+    --acid: #c8f53a;
+    --rust: #e84b1a;
+    --steel: #1a1a2e;
+    --mist: #e8e3d8;
+    --mid: #6b6560;
+  }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+font-family: ‘Syne’, sans-serif;
+background: var(–paper);
+color: var(–ink);
+overflow-x: hidden;
+}
+
+/* ─── NOISE OVERLAY ─── */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.04’/%3E%3C/svg%3E”);
+pointer-events: none;
+z-index: 9999;
+opacity: 0.5;
+}
+
+/* ─── NAV ─── */
+nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 100;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1.2rem 4rem;
+background: rgba(245,240,232,0.92);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.logo {
+font-size: 1.1rem;
+font-weight: 800;
+letter-spacing: -0.02em;
+display: flex;
+align-items: center;
+gap: 0.4rem;
+}
+
+.logo span {
+display: inline-block;
+width: 10px; height: 10px;
+background: var(–rust);
+border-radius: 50%;
+animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+0%, 100% { transform: scale(1); opacity: 1; }
+50% { transform: scale(1.4); opacity: 0.7; }
+}
+
+.nav-cta {
+background: var(–ink);
+color: var(–paper);
+padding: 0.6rem 1.4rem;
+font-family: ‘DM Mono’, monospace;
+font-size: 0.75rem;
+letter-spacing: 0.05em;
+text-decoration: none;
+transition: background 0.2s, color 0.2s;
+}
+
+.nav-cta:hover {
+background: var(–rust);
+}
+
+/* ─── HERO ─── */
+.hero {
+min-height: 100vh;
+display: grid;
+grid-template-columns: 1fr 1fr;
+padding-top: 80px;
+position: relative;
+overflow: hidden;
+}
+
+.hero-left {
+padding: 6rem 4rem 4rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+position: relative;
+z-index: 2;
+}
+
+.hero-tag {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.7rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–mid);
+margin-bottom: 2rem;
+display: flex;
+align-items: center;
+gap: 0.8rem;
+}
+
+.hero-tag::before {
+content: ‘’;
+display: block;
+width: 32px;
+height: 1px;
+background: var(–rust);
+}
+
+h1 {
+font-size: clamp(3rem, 5.5vw, 5.5rem);
+font-weight: 800;
+line-height: 0.95;
+letter-spacing: -0.04em;
+margin-bottom: 2rem;
+}
+
+h1 em {
+font-style: normal;
+color: var(–rust);
+position: relative;
+}
+
+h1 em::after {
+content: ‘’;
+position: absolute;
+bottom: 4px;
+left: 0; right: 0;
+height: 3px;
+background: var(–acid);
+transform: scaleX(0);
+transform-origin: left;
+animation: underline-in 1s 0.8s ease forwards;
+}
+
+@keyframes underline-in {
+to { transform: scaleX(1); }
+}
+
+.hero-sub {
+font-size: 1.1rem;
+font-weight: 400;
+color: var(–mid);
+line-height: 1.6;
+max-width: 420px;
+margin-bottom: 3rem;
+}
+
+.hero-actions {
+display: flex;
+gap: 1rem;
+align-items: center;
+flex-wrap: wrap;
+}
+
+.btn-primary {
+background: var(–rust);
+color: white;
+padding: 1rem 2.4rem;
+font-family: ‘Syne’, sans-serif;
+font-weight: 700;
+font-size: 0.9rem;
+letter-spacing: 0.02em;
+text-decoration: none;
+display: inline-flex;
+align-items: center;
+gap: 0.6rem;
+transition: transform 0.2s, box-shadow 0.2s;
+position: relative;
+overflow: hidden;
+}
+
+.btn-primary::after {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: var(–acid);
+transform: translateX(-100%);
+transition: transform 0.3s ease;
+z-index: -1;
+}
+
+.btn-primary:hover {
+color: var(–ink);
+transform: translateY(-2px);
+box-shadow: 6px 6px 0 var(–ink);
+}
+
+.btn-primary:hover::after {
+transform: translateX(0);
+}
+
+.btn-ghost {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.8rem;
+color: var(–mid);
+text-decoration: none;
+border-bottom: 1px solid currentColor;
+padding-bottom: 2px;
+transition: color 0.2s;
+}
+
+.btn-ghost:hover { color: var(–ink); }
+
+/* ─── HERO RIGHT ─── */
+.hero-right {
+background: var(–steel);
+position: relative;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.hero-right::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: radial-gradient(ellipse at 30% 50%, rgba(200,245,58,0.15) 0%, transparent 60%),
+radial-gradient(ellipse at 80% 20%, rgba(232,75,26,0.2) 0%, transparent 50%);
+}
+
+.data-card {
+position: relative;
+z-index: 2;
+padding: 3rem;
+width: 100%;
+max-width: 420px;
+}
+
+.data-card-title {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: rgba(245,240,232,0.4);
+margin-bottom: 2rem;
+}
+
+.lead-item {
+display: flex;
+align-items: flex-start;
+gap: 1rem;
+padding: 1.2rem 0;
+border-bottom: 1px solid rgba(245,240,232,0.06);
+animation: slide-in 0.6s ease both;
+}
+
+.lead-item:nth-child(2) { animation-delay: 0.1s; }
+.lead-item:nth-child(3) { animation-delay: 0.2s; }
+.lead-item:nth-child(4) { animation-delay: 0.3s; }
+.lead-item:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes slide-in {
+from { opacity: 0; transform: translateX(20px); }
+to { opacity: 1; transform: translateX(0); }
+}
+
+.lead-dot {
+width: 8px; height: 8px;
+border-radius: 50%;
+background: var(–acid);
+margin-top: 5px;
+flex-shrink: 0;
+box-shadow: 0 0 10px var(–acid);
+}
+
+.lead-dot.new { background: var(–rust); box-shadow: 0 0 10px var(–rust); }
+
+.lead-info { flex: 1; }
+
+.lead-name {
+font-size: 0.9rem;
+font-weight: 700;
+color: var(–paper);
+margin-bottom: 0.2rem;
+}
+
+.lead-meta {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+color: rgba(245,240,232,0.4);
+}
+
+.lead-badge {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.6rem;
+padding: 0.25rem 0.6rem;
+background: rgba(200,245,58,0.15);
+color: var(–acid);
+border: 1px solid rgba(200,245,58,0.3);
+white-space: nowrap;
+}
+
+.lead-badge.hot {
+background: rgba(232,75,26,0.15);
+color: #ff6b45;
+border-color: rgba(232,75,26,0.3);
+}
+
+.counter-row {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 1rem;
+margin-top: 2.5rem;
+padding-top: 2rem;
+border-top: 1px solid rgba(245,240,232,0.08);
+}
+
+.counter {
+text-align: center;
+}
+
+.counter-num {
+font-size: 1.8rem;
+font-weight: 800;
+color: var(–acid);
+display: block;
+line-height: 1;
+margin-bottom: 0.3rem;
+}
+
+.counter-label {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.6rem;
+color: rgba(245,240,232,0.3);
+text-transform: uppercase;
+letter-spacing: 0.1em;
+}
+
+/* ─── TICKER ─── */
+.ticker {
+background: var(–ink);
+color: var(–acid);
+padding: 0.8rem 0;
+overflow: hidden;
+white-space: nowrap;
+border-top: 2px solid var(–acid);
+border-bottom: 2px solid var(–acid);
+}
+
+.ticker-inner {
+display: inline-block;
+animation: ticker 30s linear infinite;
+font-family: ‘DM Mono’, monospace;
+font-size: 0.75rem;
+letter-spacing: 0.1em;
+}
+
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ─── HOW IT WORKS ─── */
+.section {
+padding: 8rem 4rem;
+max-width: 1300px;
+margin: 0 auto;
+}
+
+.section-label {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.7rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–rust);
+margin-bottom: 1rem;
+}
+
+.section-title {
+font-size: clamp(2rem, 3.5vw, 3.5rem);
+font-weight: 800;
+line-height: 1;
+letter-spacing: -0.03em;
+margin-bottom: 5rem;
+}
+
+.steps {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 0;
+position: relative;
+}
+
+.steps::before {
+content: ‘’;
+position: absolute;
+top: 2.2rem;
+left: calc(16.66% + 1rem);
+right: calc(16.66% + 1rem);
+height: 1px;
+background: repeating-linear-gradient(90deg, var(–ink) 0, var(–ink) 6px, transparent 6px, transparent 12px);
+}
+
+.step {
+padding: 0 2rem 0 0;
+position: relative;
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.step.visible { opacity: 1; transform: translateY(0); }
+.step:nth-child(2) { transition-delay: 0.15s; }
+.step:nth-child(3) { transition-delay: 0.3s; }
+
+.step-num {
+width: 4.5rem; height: 4.5rem;
+background: var(–ink);
+color: var(–acid);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.4rem;
+font-weight: 800;
+margin-bottom: 2rem;
+position: relative;
+z-index: 1;
+}
+
+.step-title {
+font-size: 1.3rem;
+font-weight: 700;
+margin-bottom: 0.8rem;
+letter-spacing: -0.02em;
+}
+
+.step-desc {
+font-size: 0.9rem;
+color: var(–mid);
+line-height: 1.7;
+}
+
+/* ─── PACKAGES ─── */
+.packages-bg {
+background: var(–steel);
+padding: 8rem 4rem;
+position: relative;
+overflow: hidden;
+}
+
+.packages-bg::before {
+content: ‘’;
+position: absolute;
+top: -200px; right: -200px;
+width: 600px; height: 600px;
+background: radial-gradient(circle, rgba(200,245,58,0.08) 0%, transparent 70%);
+pointer-events: none;
+}
+
+.packages-bg::after {
+content: ‘’;
+position: absolute;
+bottom: -150px; left: -100px;
+width: 500px; height: 500px;
+background: radial-gradient(circle, rgba(232,75,26,0.1) 0%, transparent 70%);
+pointer-events: none;
+}
+
+.packages-inner {
+max-width: 1300px;
+margin: 0 auto;
+position: relative;
+z-index: 1;
+}
+
+.packages-inner .section-label { color: var(–acid); }
+.packages-inner .section-title { color: var(–paper); margin-bottom: 4rem; }
+
+.cards {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.5rem;
+align-items: end;
+}
+
+.card {
+background: rgba(245,240,232,0.04);
+border: 1px solid rgba(245,240,232,0.08);
+padding: 2.5rem;
+position: relative;
+transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+transform: translateY(-6px);
+border-color: rgba(245,240,232,0.2);
+}
+
+.card.featured {
+background: var(–paper);
+border-color: var(–acid);
+padding-top: 3.5rem;
+}
+
+.featured-badge {
+position: absolute;
+top: -1px; left: 50%;
+transform: translateX(-50%);
+background: var(–acid);
+color: var(–ink);
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.1em;
+padding: 0.35rem 1rem;
+font-weight: 500;
+}
+
+.card-tier {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–mid);
+margin-bottom: 1rem;
+}
+
+.card.featured .card-tier { color: var(–mid); }
+
+.card-price {
+font-size: 3rem;
+font-weight: 800;
+letter-spacing: -0.04em;
+color: var(–paper);
+line-height: 1;
+margin-bottom: 0.3rem;
+}
+
+.card.featured .card-price { color: var(–ink); }
+
+.card-unit {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.7rem;
+color: rgba(245,240,232,0.4);
+margin-bottom: 2rem;
+}
+
+.card.featured .card-unit { color: var(–mid); }
+
+.card-qty {
+font-size: 1.4rem;
+font-weight: 700;
+color: var(–acid);
+margin-bottom: 2rem;
+}
+
+.card.featured .card-qty { color: var(–rust); }
+
+.card-features {
+list-style: none;
+margin-bottom: 2.5rem;
+}
+
+.card-features li {
+display: flex;
+align-items: center;
+gap: 0.7rem;
+font-size: 0.85rem;
+color: rgba(245,240,232,0.6);
+padding: 0.5rem 0;
+border-bottom: 1px solid rgba(245,240,232,0.05);
+}
+
+.card.featured .card-features li { color: var(–mid); border-color: rgba(0,0,0,0.06); }
+
+.card-features li::before {
+content: ‘→’;
+color: var(–acid);
+font-size: 0.8rem;
+flex-shrink: 0;
+}
+
+.card.featured .card-features li::before { color: var(–rust); }
+
+.card-btn {
+display: block;
+text-align: center;
+padding: 0.9rem;
+font-family: ‘Syne’, sans-serif;
+font-weight: 700;
+font-size: 0.85rem;
+text-decoration: none;
+border: 1px solid rgba(245,240,232,0.2);
+color: var(–paper);
+transition: all 0.2s;
+letter-spacing: 0.02em;
+}
+
+.card-btn:hover {
+background: rgba(245,240,232,0.1);
+}
+
+.card.featured .card-btn {
+background: var(–rust);
+border-color: var(–rust);
+color: white;
+}
+
+.card.featured .card-btn:hover {
+background: var(–ink);
+border-color: var(–ink);
+}
+
+/* ─── SECTORS ─── */
+.sectors-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 1px;
+background: var(–ink);
+border: 1px solid var(–ink);
+margin-top: 5rem;
+}
+
+.sector {
+background: var(–paper);
+padding: 2rem 1.5rem;
+text-align: center;
+transition: background 0.2s, color 0.2s;
+cursor: default;
+}
+
+.sector:hover {
+background: var(–rust);
+color: white;
+}
+
+.sector-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+.sector-name { font-size: 0.85rem; font-weight: 700; letter-spacing: -0.01em; }
+.sector-count {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+color: var(–mid);
+margin-top: 0.3rem;
+}
+
+.sector:hover .sector-count { color: rgba(255,255,255,0.7); }
+
+/* ─── TESTIMONIAL ─── */
+.testimonial-section {
+background: var(–acid);
+padding: 6rem 4rem;
+}
+
+.testimonial-inner {
+max-width: 1300px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr 2fr;
+gap: 6rem;
+align-items: center;
+}
+
+.testimonial-label {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.7rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: rgba(10,10,10,0.5);
+margin-bottom: 1.5rem;
+}
+
+.testimonial-big {
+font-size: clamp(2.5rem, 4vw, 4rem);
+font-weight: 800;
+letter-spacing: -0.04em;
+line-height: 0.95;
+}
+
+.quote {
+font-size: 1.2rem;
+font-weight: 600;
+line-height: 1.5;
+letter-spacing: -0.02em;
+margin-bottom: 2rem;
+}
+
+.quote-author {
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.author-avatar {
+width: 44px; height: 44px;
+background: var(–ink);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.1rem;
+}
+
+.author-name { font-size: 0.85rem; font-weight: 700; }
+.author-role { font-family: ‘DM Mono’, monospace; font-size: 0.65rem; color: rgba(10,10,10,0.5); }
+
+/* ─── CONTACT ─── */
+.contact-section {
+padding: 8rem 4rem;
+max-width: 1300px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 8rem;
+align-items: start;
+}
+
+.contact-left h2 {
+font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+font-weight: 800;
+line-height: 1;
+letter-spacing: -0.03em;
+margin-bottom: 1.5rem;
+}
+
+.contact-info {
+margin-top: 3rem;
+display: flex;
+flex-direction: column;
+gap: 1rem;
+}
+
+.contact-item {
+display: flex;
+align-items: center;
+gap: 1rem;
+font-size: 0.9rem;
+}
+
+.contact-icon {
+width: 40px; height: 40px;
+background: var(–mist);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1rem;
+flex-shrink: 0;
+}
+
+.contact-item a { color: var(–ink); text-decoration: none; font-weight: 600; }
+.contact-item a:hover { color: var(–rust); }
+
+/* ─── FORM ─── */
+.form-group {
+margin-bottom: 1.5rem;
+}
+
+label {
+display: block;
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–mid);
+margin-bottom: 0.5rem;
+}
+
+input, select, textarea {
+width: 100%;
+padding: 0.9rem 1rem;
+background: transparent;
+border: 1px solid rgba(0,0,0,0.2);
+font-family: ‘Syne’, sans-serif;
+font-size: 0.9rem;
+color: var(–ink);
+outline: none;
+transition: border-color 0.2s;
+appearance: none;
+}
+
+input:focus, select:focus, textarea:focus {
+border-color: var(–rust);
+}
+
+textarea { resize: vertical; min-height: 120px; }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.submit-btn {
+width: 100%;
+padding: 1.1rem;
+background: var(–ink);
+color: var(–paper);
+border: none;
+font-family: ‘Syne’, sans-serif;
+font-size: 1rem;
+font-weight: 700;
+cursor: pointer;
+letter-spacing: 0.02em;
+transition: background 0.2s;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.6rem;
+}
+
+.submit-btn:hover { background: var(–rust); }
+
+/* ─── FOOTER ─── */
+footer {
+background: var(–ink);
+color: rgba(245,240,232,0.4);
+padding: 3rem 4rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 1rem;
+}
+
+.footer-brand {
+font-size: 1rem;
+font-weight: 800;
+color: var(–paper);
+letter-spacing: -0.02em;
+}
+
+.footer-links {
+display: flex;
+gap: 2rem;
+list-style: none;
+}
+
+.footer-links a {
+color: rgba(245,240,232,0.4);
+text-decoration: none;
+font-family: ‘DM Mono’, monospace;
+font-size: 0.7rem;
+transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(–acid); }
+
+.footer-copy {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+}
+
+/* ─── SCROLL ANIMATIONS ─── */
+.fade-up {
+opacity: 0;
+transform: translateY(40px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+nav { padding: 1rem 1.5rem; }
+.hero { grid-template-columns: 1fr; }
+.hero-right { display: none; }
+.hero-left { padding: 5rem 1.5rem 3rem; }
+.section { padding: 5rem 1.5rem; }
+.steps, .cards { grid-template-columns: 1fr; }
+.steps::before { display: none; }
+.sectors-grid { grid-template-columns: repeat(2, 1fr); }
+.testimonial-inner { grid-template-columns: 1fr; gap: 2rem; }
+.testimonial-big { font-size: 2.5rem; }
+.contact-section { grid-template-columns: 1fr; gap: 3rem; }
+.form-grid { grid-template-columns: 1fr; }
+.packages-bg { padding: 5rem 1.5rem; }
+footer { flex-direction: column; text-align: center; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <div class="logo">
+    <span></span>
+    LeadForge Italia
+  </div>
+  <a href="#contatto" class="nav-cta">Richiedi un preventivo →</a>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Lead Generation B2B · Italia</div>
+    <h1>Trova i tuoi<br>clienti<br><em>prima</em><br>dei concorrenti.</h1>
+    <p class="hero-sub">Consegniamo liste di contatti B2B locali verificati, su misura per il tuo settore e la tua città. Pronti in 24–48 ore.</p>
+    <div class="hero-actions">
+      <a href="#contatto" class="btn-primary">
+        Ricevi 50 lead gratis
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </a>
+      <a href="#come-funziona" class="btn-ghost">Come funziona?</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="data-card">
+      <div class="data-card-title">// lead_feed · live · Milano</div>
+
+```
+  <div class="lead-item">
+    <div class="lead-dot"></div>
+    <div class="lead-info">
+      <div class="lead-name">Studio Legale Ferretti & Associati</div>
+      <div class="lead-meta">Avvocati · Via Torino, MI · +39 02 ···</div>
+    </div>
+    <div class="lead-badge">VERIFICATO</div>
+  </div>
+
+  <div class="lead-item">
+    <div class="lead-dot new"></div>
+    <div class="lead-info">
+      <div class="lead-name">Ristorante Da Marco srl</div>
+      <div class="lead-meta">Ristorazione · Corso Buenos Aires · ···</div>
+    </div>
+    <div class="lead-badge hot">NUOVO</div>
+  </div>
+
+  <div class="lead-item">
+    <div class="lead-dot"></div>
+    <div class="lead-info">
+      <div class="lead-name">Clinica Dentale Smile 360</div>
+      <div class="lead-meta">Salute · Navigli · info@smile···</div>
+    </div>
+    <div class="lead-badge">VERIFICATO</div>
+  </div>
+
+  <div class="lead-item">
+    <div class="lead-dot"></div>
+    <div class="lead-info">
+      <div class="lead-name">Agenzia Imm. Casa Nostra</div>
+      <div class="lead-meta">Real Estate · Porta Venezia · ···</div>
+    </div>
+    <div class="lead-badge">VERIFICATO</div>
+  </div>
+
+  <div class="lead-item">
+    <div class="lead-dot new"></div>
+    <div class="lead-info">
+      <div class="lead-name">Palestra Iron Body Milano</div>
+      <div class="lead-meta">Fitness · Porta Romana · +39 02 ···</div>
+    </div>
+    <div class="lead-badge hot">NUOVO</div>
+  </div>
+
+  <div class="counter-row">
+    <div class="counter">
+      <span class="counter-num">12k+</span>
+      <span class="counter-label">Lead erogati</span>
+    </div>
+    <div class="counter">
+      <span class="counter-num">94%</span>
+      <span class="counter-label">Verifica email</span>
+    </div>
+    <div class="counter">
+      <span class="counter-num">48h</span>
+      <span class="counter-label">Consegna</span>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- TICKER -->
+
+<div class="ticker">
+  <div class="ticker-inner">
+    ✦ RISTORANTI &amp; FOOD · STUDI MEDICI · AGENZIE IMMOBILIARI · PALESTRE · STUDI LEGALI · E-COMMERCE LOCALI · AUTOFFICINE · ALBERGHI · COMMERCIALISTI · DENTISTI · PARRUCCHIERI · ARCHITETTI · IMPRESE EDILI ✦ RISTORANTI &amp; FOOD · STUDI MEDICI · AGENZIE IMMOBILIARI · PALESTRE · STUDI LEGALI · E-COMMERCE LOCALI · AUTOFFICINE · ALBERGHI · COMMERCIALISTI · DENTISTI · PARRUCCHIERI · ARCHITETTI · IMPRESE EDILI ✦
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+
+<section id="come-funziona" class="section">
+  <div class="section-label">// processo</div>
+  <h2 class="section-title">Tre passi.<br>Zero sprechi.</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3 class="step-title">Dimmi chi vuoi colpire</h3>
+      <p class="step-desc">Settore, città, dimensione aziendale, tipo di contatto. Più è specifica la richiesta, migliore è la lista. Un form veloce, nessuna call obbligatoria.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3 class="step-title">Generiamo e verifichiamo</h3>
+      <p class="step-desc">Le nostre API raccolgono dati da Google Maps, LinkedIn, database pubblici e directory di settore. Ogni email viene verificata in tempo reale prima della consegna.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3 class="step-title">Ricevi e converti</h3>
+      <p class="step-desc">CSV o Excel pronti per il tuo CRM, con nome, email, telefono, sito, indirizzo. Consegna entro 24–48 ore. Garanzia sostituzione sui contatti non validi.</p>
+    </div>
+  </div>
+
+  <div class="sectors-grid fade-up">
+    <div class="sector">
+      <div class="sector-icon">🍕</div>
+      <div class="sector-name">Ristorazione</div>
+      <div class="sector-count">+3.200 in Italia</div>
+    </div>
+    <div class="sector">
+      <div class="sector-icon">🏠</div>
+      <div class="sector-name">Real Estate</div>
+      <div class="sector-count">+4.800 agenzie</div>
+    </div>
+    <div class="sector">
+      <div class="sector-icon">⚕️</div>
+      <div class="sector-name">Salute & Benessere</div>
+      <div class="sector-count">+6.100 strutture</div>
+    </div>
+    <div class="sector">
+      <div class="sector-icon">💼</div>
+      <div class="sector-name">Studi Professionali</div>
+      <div class="sector-count">+8.900 contatti</div>
+    </div>
+    <div class="sector">
+      <div class="sector-icon">🏋️</div>
+      <div class="sector-name">Fitness & Sport</div>
+      <div class="sector-count">+2.700 palestre</div>
+    </div>
+    <div class="sector">
+      <div class="sector-icon">🏨</div>
+      <div class="sector-name">Hospitality</div>
+      <div class="sector-count">+5.400 strutture</div>
+    </div>
+    <div class="sector">
+      <div class="sector-icon">🔧</div>
+      <div class="sector-name">Artigiani & Edilizia</div>
+      <div class="sector-count">+7.200 imprese</div>
+    </div>
+    <div class="sector">
+      <div class="sector-icon">🛒</div>
+      <div class="sector-name">Retail Locale</div>
+      <div class="sector-count">+9.500 negozi</div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+
+<div class="packages-bg" id="pacchetti">
+  <div class="packages-inner">
+    <div class="section-label">// pacchetti</div>
+    <h2 class="section-title">Scegli la quantità<br>giusta per te.</h2>
+
+```
+<div class="cards">
+  <div class="card fade-up">
+    <div class="card-tier">Starter</div>
+    <div class="card-price">€49</div>
+    <div class="card-unit">una tantum</div>
+    <div class="card-qty">100 Lead</div>
+    <ul class="card-features">
+      <li>1 settore + 1 città</li>
+      <li>Email + telefono + indirizzo</li>
+      <li>Verifica email inclusa</li>
+      <li>Formato CSV/Excel</li>
+      <li>Consegna entro 48h</li>
+    </ul>
+    <a href="#contatto" class="card-btn">Ordina ora</a>
+  </div>
+
+  <div class="card featured fade-up">
+    <div class="featured-badge">★ PIÙ VENDUTO</div>
+    <div class="card-tier">Pro</div>
+    <div class="card-price">€149</div>
+    <div class="card-unit">una tantum</div>
+    <div class="card-qty">500 Lead</div>
+    <ul class="card-features">
+      <li>Fino a 3 settori o città</li>
+      <li>Email verificata + LinkedIn</li>
+      <li>Filtraggio per dimensione</li>
+      <li>Formato CSV/Excel/JSON</li>
+      <li>Consegna entro 24h</li>
+      <li>Sostituzione garantita</li>
+    </ul>
+    <a href="#contatto" class="card-btn">Ordina ora</a>
+  </div>
+
+  <div class="card fade-up">
+    <div class="card-tier">Enterprise</div>
+    <div class="card-price">€399</div>
+    <div class="card-unit">una tantum</div>
+    <div class="card-qty">2.000 Lead</div>
+    <ul class="card-features">
+      <li>Settori e città illimitati</li>
+      <li>Dati arricchiti + social</li>
+      <li>Integrazione CRM diretta</li>
+      <li>Account manager dedicato</li>
+      <li>Consegna prioritaria 12h</li>
+      <li>Aggiornamenti mensili</li>
+    </ul>
+    <a href="#contatto" class="card-btn">Contattaci</a>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- TESTIMONIAL -->
+
+<div class="testimonial-section">
+  <div class="testimonial-inner">
+    <div>
+      <div class="testimonial-label">// risultati reali</div>
+      <div class="testimonial-big">+340%<br>reply<br>rate</div>
+    </div>
+    <div>
+      <div class="quote">"Avevo perso settimane a cercare contatti su Google. Con LeadForge ho ricevuto 500 ristoranti della Lombardia con email verificata in meno di un giorno. La mia campagna email ha avuto un tasso di risposta che non avevo mai visto prima."</div>
+      <div class="quote-author">
+        <div class="author-avatar">🧑</div>
+        <div>
+          <div class="author-name">Marco T.</div>
+          <div class="author-role">Consulente Marketing · Milano</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+
+<section id="contatto">
+  <div class="contact-section">
+    <div class="contact-left">
+      <div class="section-label">// inizia oggi</div>
+      <h2>Parliamo<br>dei tuoi<br>obiettivi.</h2>
+      <p style="color: var(--mid); line-height: 1.7; margin-top: 1rem;">Ricevi <strong>50 lead gratuiti</strong> sulla tua nicchia di riferimento prima di acquistare. Nessun impegno, nessuna carta di credito.</p>
+
+```
+  <div class="contact-info">
+    <div class="contact-item">
+      <div class="contact-icon">📧</div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--mid);margin-bottom:0.2rem">EMAIL</div>
+        <a href="mailto:lukapillitteri@gmail.com">lukapillitteri@gmail.com</a>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📱</div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--mid);margin-bottom:0.2rem">WHATSAPP / TEL</div>
+        <a href="https://wa.me/393209138729">+39 320 913 8729</a>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">⚡</div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--mid);margin-bottom:0.2rem">RISPOSTA</div>
+        <span style="font-weight:600">Entro 2 ore in orario lavorativo</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contact-right">
+  <form onsubmit="handleSubmit(event)">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Nome *</label>
+        <input type="text" placeholder="Mario Rossi" required>
+      </div>
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" placeholder="mario@azienda.it" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Settore di interesse *</label>
+      <select required>
+        <option value="">Seleziona...</option>
+        <option>Ristorazione & Food</option>
+        <option>Real Estate & Immobiliare</option>
+        <option>Salute & Benessere</option>
+        <option>Studi Legali & Commercialisti</option>
+        <option>Fitness & Sport</option>
+        <option>Hospitality & Turismo</option>
+        <option>Artigiani & Edilizia</option>
+        <option>Retail & Negozi</option>
+        <option>Altro (specificare nel messaggio)</option>
+      </select>
+    </div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Città / Regione *</label>
+        <input type="text" placeholder="es. Milano, Lombardia" required>
+      </div>
+      <div class="form-group">
+        <label>Quantità lead</label>
+        <select>
+          <option>50 (campione gratuito)</option>
+          <option>100 — Starter €49</option>
+          <option>500 — Pro €149</option>
+          <option>2.000 — Enterprise €399</option>
+          <option>Quantità custom</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Note aggiuntive</label>
+      <textarea placeholder="Es. voglio solo locali con più di 50 dipendenti, o solo ristoranti con sito web..."></textarea>
+    </div>
+    <button type="submit" class="submit-btn">
+      Invia richiesta — è gratis
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </form>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-brand">LeadForge Italia</div>
+  <ul class="footer-links">
+    <li><a href="#come-funziona">Come funziona</a></li>
+    <li><a href="#pacchetti">Pacchetti</a></li>
+    <li><a href="#contatto">Contatti</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 · lukapillitteri@gmail.com · +39 320 913 8729</div>
+</footer>
+
+<script>
+  // Intersection Observer per animazioni
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.step, .fade-up').forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.submit-btn');
+    btn.textContent = '✓ Richiesta inviata! Ti contattiamo presto.';
+    btn.style.background = '#2d8a4e';
+    btn.disabled = true;
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Counter animation
+  function animateCounter(el, target, suffix = '') {
+    let current = 0;
+    const increment = target / 60;
+    const timer = setInterval(() => {
+      current = Math.min(current + increment, target);
+      el.textContent = Math.floor(current) + suffix;
+      if (current >= target) clearInterval(timer);
+    }, 25);
+  }
+</script>
+
+</body>
+</html>
